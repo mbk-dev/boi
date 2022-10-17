@@ -21,6 +21,7 @@ def get_data_frame(seriescode: str = 'RIB_BOI.D',
     resp = abc.text
     ldf = pd.read_html(StringIO(resp), parse_dates=[0])
     df = ldf[1]
-    df.set_index(0, inplace=True)
+    df.rename(columns={df.columns[0]: "date"}, inplace=True)
+    df.set_index("date", inplace=True)
     df.index = df.index.to_period(freq='D')
-    return df
+    return df.squeeze()
