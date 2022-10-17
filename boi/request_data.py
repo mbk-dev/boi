@@ -19,9 +19,10 @@ def get_data_frame(seriescode: str = 'RIB_BOI.D',
               }
     abc: Response = requests.get(request_url, params=params)
     resp = abc.text
-    ldf = pd.read_html(StringIO(resp), parse_dates=[0])
+    ldf = pd.read_html(StringIO(resp))
     df = ldf[1]
     df.rename(columns={df.columns[0]: "date"}, inplace=True)
+    df['date'] = pd.to_datetime(df['date'], format='%d/%m/%Y')
     df.set_index("date", inplace=True)
     df.index = df.index.to_period(freq='D')
     return df.squeeze()
