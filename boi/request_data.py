@@ -1,14 +1,17 @@
 import pandas as pd
 import requests
 from io import StringIO
-
 from requests import Response
+from datetime import date
+
+today = date.today()
 
 URL_begin = "https://www.boi.org.il/en/DataAndStatistics/Pages/boi.ashx"
 
 
+
 def get_data_frame(seriescode: str = 'RIB_BOI.D',
-                   datestart: str = "27/01/1994", dateend: str = '13/10/2022') -> pd.Series:
+                   datestart: str = "27/01/1994", dateend: str = today.strftime("%d/%m/%Y")) -> pd.Series:
     request_url = URL_begin
     params = {'Command': 'DownloadSeriesExcel',
               'SeriesCode': seriescode,
