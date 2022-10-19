@@ -10,7 +10,8 @@ URL_begin = "https://www.boi.org.il/en/DataAndStatistics/Pages/boi.ashx"
 
 
 def get_data_frame(seriescode: str = 'RIB_BOI.D',
-                   datestart: str = "27/01/1994", dateend: str = today.strftime("%d/%m/%Y")) -> pd.Series:
+                   datestart: str = "27/01/1994", dateend: str = today.strftime("%d/%m/%Y"),
+                   freq: str = 'D') -> pd.Series:
     request_url = URL_begin
     params = {'Command': 'DownloadSeriesExcel',
               'SeriesCode': seriescode,
@@ -26,5 +27,5 @@ def get_data_frame(seriescode: str = 'RIB_BOI.D',
     df.rename(columns={df.columns[0]: "date"}, inplace=True)
     df['date'] = pd.to_datetime(df['date'], format='%d/%m/%Y')
     df.set_index("date", inplace=True)
-    df.index = df.index.to_period(freq='D')
+    df.index = df.index.to_period(freq=freq)
     return df.squeeze()
