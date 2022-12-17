@@ -10,8 +10,9 @@ def get_cp(datestart: str = "01/01/1951", dateend: str = today.strftime("%d/%m/%
     s.rename("CP based on 2020", inplace=True)
     return s
 
-def get_inflation (datestart: str = "01/01/1951", dateend: str = today.strftime("%d/%m/%Y")) -> pd.Series:
-    s = get_cp(datestart,dateend)
+
+def get_inflation(datestart: str = "01/01/1951", dateend: str = today.strftime("%d/%m/%Y")) -> pd.Series:
+    s = get_cp(datestart, dateend)
     s.rename("Inflation", inplace=True)
     s = s.pct_change().round(4)
     s.dropna(inplace=True)
