@@ -9,9 +9,5 @@ print(abc)
 abc = boi.kr.get_ir()
 print(abc)
 
-
-
-
-
 abc = boi.infl.get_inflation()
 print(abc)

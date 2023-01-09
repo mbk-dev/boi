@@ -12,8 +12,10 @@ today = date.today()
 URL_begin = "https://edge.boi.gov.il/FusionEdgeServer/sdmx/v2/data/dataflow/BOI.STATISTICS/PRI/1.0/"
 
 
-def get_data_frame(url: str = URL_begin, seriescode: str = 'RIB_BOI.D',
-                   datestart: str = "1900-1-1", dateend: str = today.strftime(format_long),
+def get_data_frame(url: str = URL_begin,
+                   seriescode: str = 'RIB_BOI.D',
+                   datestart: str = "1900-1-1",
+                   dateend: str = today.strftime(format_long),
                    freq: str = 'D') -> pd.Series:
     request_url = url + seriescode
     params = {'c%5BTIME_PERIOD%5D': f'ge:{datestart}+le:{dateend}'}
@@ -24,7 +26,6 @@ def get_data_frame(url: str = URL_begin, seriescode: str = 'RIB_BOI.D',
     df = ldf
     df.rename(columns={df.columns[0]: "date"}, inplace=True)
     if freq != 'Q':
-
         df['date'] = pd.to_datetime(df['date'], format=format_short)
         df.set_index("date", inplace=True)
         df.index = df.index.to_period(freq=freq)
