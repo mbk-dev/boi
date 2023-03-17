@@ -16,9 +16,9 @@ def get_cpi(date_start: str = "1900-1-1",
     url_cpi = "https://edge.boi.gov.il/FusionEdgeServer/sdmx/v2/data/dataflow/BOI.STATISTICS/PRI/1.0/"
     s = boi.request_data.get_data_frame(
         url=url_cpi,
-        seriescode='CP.CPI.CPI_2_29.MAIN.M.N._Z._Z.I22_L._Z.A._Z._Z',
-        datestart=date_start,
-        dateend=date_end,
+        series_code='CP.CPI.CPI_2_29.MAIN.M.N._Z._Z.I22_L._Z.A._Z._Z',
+        date_start=date_start,
+        date_end=date_end,
         freq='M')
     s.rename("CPI_2020", inplace=True)
     return s

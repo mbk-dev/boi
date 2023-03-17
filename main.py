@@ -1,6 +1,6 @@
 import boi
 
-abc = boi.gdp.get_gdp()
+abc = boi.gdp.get_gdp(date_start='2022-01-01')
 print(abc)
 
 abc = boi.infl.get_cpi()
