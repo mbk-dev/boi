@@ -1,8 +1,11 @@
+import urllib.parse
+from io import StringIO
+from datetime import date
+
 import pandas as pd
 import requests
-from io import StringIO
 from requests import Response
-from datetime import date
+
 
 format_long = "%Y-%m-%d"
 format_short = '%Y-%m'
@@ -18,7 +21,8 @@ def get_data_frame(url: str = URL_begin,
                    date_end: str = today.strftime(format_long),
                    freq: str = 'D') -> pd.Series:
     request_url = url + series_code
-    params = {'c%5BTIME_PERIOD%5D': f'ge:{date_start}+le:{date_end}'}
+    date_parameter = urllib.parse.unquote('c%5BTIME_PERIOD%5D')
+    params = {date_parameter: f'ge:{date_start}+le:{date_end}'}
     abc: Response = requests.get(request_url, params=params)
     resp = abc.text
 
