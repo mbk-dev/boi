@@ -28,7 +28,7 @@ def get_cpi(date_start: str = "1951-10-01",
     return s
 
 
-def get_inflation(date_start: str = "1900-1-1",
+def get_inflation(date_start: str = "1951-10-01",
                   date_end: str = today.strftime(boi.settings.format_long)
                   ) -> pd.Series:
     s = get_cpi(date_start, date_end)
