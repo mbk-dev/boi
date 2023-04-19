@@ -43,8 +43,7 @@ def get_data(url: str = BASE_URL,
         ) from err
     resp = abc.text
 
-    ldf = pd.read_xml(StringIO(resp), xpath="//Obs")
-    df = ldf
+    df = pd.read_xml(StringIO(resp), xpath="//Obs")
     df.rename(columns={df.columns[0]: "date"}, inplace=True)
     if freq != 'Q':
         df['date'] = pd.to_datetime(df['date'], format=format_short)
