@@ -46,7 +46,11 @@ def get_data(url: str = BASE_URL,
     df = pd.read_xml(StringIO(resp), xpath="//Obs")
     df.rename(columns={df.columns[0]: "date"}, inplace=True)
     if freq != 'Q':
-        df['date'] = pd.to_datetime(df['date'], format=format_short)
+        try:
+            df['date'] = pd.to_datetime(df['date'], format=format_short)
+        except ValueError:
+            df['date'] = pd.to_datetime(df['date'], format=format_long)
+            df.drop(columns=['RELEASE_STATUS'], inplace=True)
         df.set_index("date", inplace=True)
         df.index = df.index.to_period(freq=freq)
     else:
