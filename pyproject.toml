@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "boi"
-version = "0.2.1"
+version = "0.2.2"
 description = ""
 authors = ["fzhulitov <fzhulitov@gmail.com>"]
 readme = "README.md"
@@ -10,10 +10,6 @@ python = ">=3.11,<4.0.0"
 pandas = "^2.2.0"
 requests = "*"
 lxml = "*"
-#html5lib = "^1.1"
-#bs4 = "^0.0.1"
-#pyoai = "^2.5.0"
-#sdmx1 = "^2.7.0"
 setuptools = "*"
 
 [build-system]
