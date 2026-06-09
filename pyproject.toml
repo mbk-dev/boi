@@ -1,13 +1,13 @@
 [tool.poetry]
 name = "boi"
-version = "0.2.2"
+version = "0.2.3"
 description = ""
 authors = ["fzhulitov <fzhulitov@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
 python = ">=3.11,<4.0.0"
-pandas = "^2.2.0"
+pandas = ">=2.2.0,<4.0.0"
 requests = "*"
 lxml = "*"
 setuptools = "*"
